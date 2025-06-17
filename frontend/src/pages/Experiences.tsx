@@ -7,9 +7,9 @@ import { experienceTypeMap } from "../types/experienceTypes";
 import { useExperiences } from "../hooks/useExperiences";
 
 export default function Experiences() {
-  const [selectedExperience, setSelectedExperience] = useState<string | null>(
-    null
-  );
+  // const [selectedExperience, setSelectedExperience] = useState<string | null>(
+  //   null
+  // );
 
   // TODO Oppgave 1.1 of 1.2: Håndter loading og error av erfaringer
   const { data: experiences } = useExperiences();
@@ -25,23 +25,23 @@ export default function Experiences() {
     // TODO Oppgave 5.1: Filtrer experiences etter type
   };
 
-  const filteredExperiences = () => {
-    const validTypes = Object.keys(experienceTypeMap).filter(
-      (type) => type !== "other"
-    );
+  // const filteredExperiences = () => {
+  //   const validTypes = Object.keys(experienceTypeMap).filter(
+  //     (type) => type !== "other"
+  //   );
 
-    if (selectedExperience === "other") {
-      return experiences.filter(
-        (experience) => !validTypes.includes(experience.type.toLowerCase())
-      );
-    } else if (selectedExperience) {
-      return experiences.filter(
-        (experience) =>
-          experience.type.toLowerCase() === selectedExperience.toLowerCase()
-      );
-    }
-    return experiences;
-  };
+  //   if (selectedExperience === "other") {
+  //     return experiences.filter(
+  //       (experience) => !validTypes.includes(experience.type.toLowerCase())
+  //     );
+  //   } else if (selectedExperience) {
+  //     return experiences.filter(
+  //       (experience) =>
+  //         experience.type.toLowerCase() === selectedExperience.toLowerCase()
+  //     );
+  //   }
+  //   return experiences;
+  // };
 
   return (
     <div className={styles.container}>
