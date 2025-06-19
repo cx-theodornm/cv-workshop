@@ -35,9 +35,35 @@ public class CvService(AppDbContext context) : ICvService
     public async Task<IEnumerable<Experience>> GetExperiencesByTypeAsync(string type)
     {
         // TODO: Oppgave 3
+        return await context.Experiences.Where(e => e.Type == type)
+                    .OrderByDescending(e => e.StartDate)
+                    .ToListAsync();
 
-        return [];
+        // return [];
     }
 
     // TODO: Oppgave 4 ny metode (husk å legge den til i interfacet)
+    public async Task<IEnumerable<User>> GetUsersWithDesiredSkills(IEnumerable<string> desiredTechnologies)
+    {
+        var users = GetAllUsersAsync();
+        var filteredUsers = allUsers.Where(user =>
+            UserMapper
+                .ParseUserSkills(user.Skills)
+                .Any(skill =>
+                    desiredTechnologies
+                        .Select(tech => tech.ToLower())
+                        .Contains(skill.Technology.ToLower())
+                )
+        );
+        return filteredUsers;
+    }
+}
+
+public enum Type
+{
+    hobbyProject,
+    education,
+    voluntary,
+    coach,
+    work
 }
