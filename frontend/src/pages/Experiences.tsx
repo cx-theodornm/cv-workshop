@@ -19,9 +19,9 @@ export default function Experiences() {
     return <div className={styles.loading}>Loading Experiences...</div>
   }
 
-  if (experiencesError) {
-    return <div className={styles.error}>Error loading Experiences</div>
-  }
+  // if (experiencesError) {
+  //   return <div className={styles.error}>Error loading Experiences</div>
+  // }
 
   if (!experiences || experiences.length === 0) {
     return <div className={styles.noExperiences}>No experiences found.</div>;
