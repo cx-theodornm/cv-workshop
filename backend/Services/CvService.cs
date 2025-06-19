@@ -45,8 +45,8 @@ public class CvService(AppDbContext context) : ICvService
     // TODO: Oppgave 4 ny metode (husk å legge den til i interfacet)
     public async Task<IEnumerable<User>> GetUsersWithDesiredSkills(IEnumerable<string> desiredTechnologies)
     {
-        var users = GetAllUsersAsync();
-        var filteredUsers = allUsers.Where(user =>
+        var users = await GetAllUsersAsync();
+        var filteredUsers = users.Where(user =>
             UserMapper
                 .ParseUserSkills(user.Skills)
                 .Any(skill =>
